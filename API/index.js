@@ -125,8 +125,6 @@ app.post('/login', async (req, res) => {
         const token = jwt.sign(
             {
                 id: userDoc._id,
-                firstName: userDoc.firstName,
-                lastName: userDoc.lastName,
                 email: userDoc.email,
                 type: userDoc.type,
             },
@@ -142,24 +140,6 @@ app.post('/login', async (req, res) => {
 });
 
 
-
-
-// app.get('/profile', async (req, res) => {
-
-//     const token = req.cookies;
-//     console.log(req.cookies);
-//     if (!token) {
-//         res.status(401).json({ message: 'Unauthorized!' });
-//     } else {
-//         try {
-//             const payload = jwt.verify(token, jwtSecret);
-//             const userDoc = await User.findById(payload.id);
-//             res.json(userDoc);
-//         } catch (err) {
-//             res.status(401).json({ message: 'Unauthorized!' });
-//         }
-//     }
-// });
 
 app.get('/profile', (req, res) => {
     const { token } = req.cookies;
