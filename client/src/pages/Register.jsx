@@ -10,21 +10,26 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [type, setType] = useState("");
 
-  function registerUser(e) {
+  async function registerUser(e) {
     e.preventDefault();
-
-    const pass =
-      password === confirmPassword ? password : alert("Passwords do not match");
-
-    if (pass) {
-      axios.post("/register", {
-        firstName,
-        lastName,
-        type,
-        email,
-        password,
-      });
-    } // end if
+    try {
+      const pass =
+        password === confirmPassword
+          ? password
+          : alert("Passwords do not match");
+      if (pass) {
+        await axios.post("/register", {
+          firstName,
+          lastName,
+          type,
+          email,
+          password,
+        });
+      } // end if
+      alert("User registered successfully, Now you can login");
+    } catch (err) {
+      alert("Registration failed, please try again");
+    }
   } // end registerUser
 
   return (
