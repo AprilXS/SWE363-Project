@@ -21,6 +21,18 @@ function MyBooks() {
   const [publishedDate, setPublishedDate] = useState("");
 
   function handleSubmit(e) {
+    if (
+      title === "" ||
+      authorReal === "" ||
+      description === "" ||
+      genre === "" ||
+      numberOfPages === "" ||
+      cover === "" ||
+      publishedDate === ""
+    ) {
+      alert("Please fill all the fields");
+      return;
+    }
     e.preventDefault();
     axios
       .post("/addBook", {
@@ -163,7 +175,7 @@ function MyBooks() {
       <div className="pt-20 grid grid-cols-1 sm:grid-cols-2 gap-8">
         {books.map((book) => {
           return (
-            <div
+            <Link
               key={book._id}
               className="flex items-center p-6 rounded-lg border border-gray-300 gap-4"
             >
@@ -175,15 +187,22 @@ function MyBooks() {
                 />
               </div>
               <div>
-                <div className="mb-4">
-                  <strong className="text-lg">Title:</strong> {book.title}
+                <div className="flex gap-2">
+                  <div className="mb-4 border-b bg-gray-200 rounded-lg px-3">
+                    <strong className="text-lg">Title:</strong> {book.title}
+                  </div>
+                  <div className="mb-4 border-b bg-gray-200 rounded-lg px-3">
+                    <strong className="text-lg">Author:</strong>{" "}
+                    {book.authorReal}
+                  </div>
                 </div>
-                <div className="mb-4">
-                  <strong className="text-lg">Author:</strong> {book.authorReal}
+                <div className="border-b bg-gray-200 rounded-lg px-3">
+                  <strong className="text-lg ">Description:</strong>{" "}
+                  {book.description}
                 </div>
                 {/* Add more details as needed */}
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
