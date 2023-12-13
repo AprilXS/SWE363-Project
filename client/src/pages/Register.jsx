@@ -8,7 +8,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("reader");
 
   async function registerUser(e) {
     e.preventDefault();
@@ -74,7 +74,6 @@ function Register() {
             </div>
             <div class="">
               <input
-                checked
                 id="radio-2"
                 type="radio"
                 value={type}

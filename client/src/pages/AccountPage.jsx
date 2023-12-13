@@ -50,7 +50,7 @@ function AccountPage() {
         <Link to={"/accountPage"} className={LinkClasses("Myprofile")}>
           My Profile
         </Link>
-        {user.type === "reader" && (
+        {user.type === "author" && (
           <Link to={"/accountPage/MyBooks"} className={LinkClasses("MyBooks")}>
             My Books
           </Link>
