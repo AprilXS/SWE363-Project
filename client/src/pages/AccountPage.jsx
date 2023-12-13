@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import MyBooks from "./MyBooks";
 
 function AccountPage() {
   const { user, setUser, ready } = useContext(UserContext);
@@ -29,8 +30,6 @@ function AccountPage() {
   if (subpage === undefined) {
     subpage = "Myprofile";
   }
-  console.log(subpage);
-  console.log(user.type);
 
   function LinkClasses(type = null) {
     let classes = "border my-2 py-2 px-12 rounded-2xl";
@@ -63,7 +62,7 @@ function AccountPage() {
         </Link>
       </nav>
       {subpage === "Myprofile" && (
-        <div className="flex flex-col items-center p-6 rounded-lg mt-20">
+        <div className="flex flex-col items-center p-6 rounded-lg mt-12">
           <h2 className="text-2xl font-semibold mb-4">Your Profile</h2>
           <div className="mb-2 border-b-4">
             <strong>Name:</strong> {user.firstName} {user.lastName}
@@ -79,6 +78,7 @@ function AccountPage() {
           </button>
         </div>
       )}
+      {subpage === "MyBooks" && <MyBooks />}
     </div>
   );
 } // end IndexPage
