@@ -3,11 +3,12 @@ const Schema = mongoose.Schema;
 
 const BookSchema = new Schema({
     title: String,  
-    auther: {type:mongoose.Schema.Types.ObjectId, ref:'User'},   
+    author: {type:mongoose.Schema.Types.ObjectId, ref:'User'},
+    authorReal: String,   
     description: String,
-    image: String,
-    type: String,   
-    pages: Number,
+    cover: String,
+    genre: String,   
+    numberOfPages: Number,
     averageRating: Number,
     rating: Number,
     publishedDate: Date,

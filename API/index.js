@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User');
+const Book = require('./models/Book');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const app = express();
@@ -166,10 +167,47 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-    res.clearCookie('token',{ httpOnly: true, secure: true, sameSite: 'None' }).json({ message: 'Logged out' });
+    res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'None' }).json({ message: 'Logged out' });
 });
 
-app.listen(3000, () => {
+app.post('/addBook', async (req, res) => {
+    const { title, description, cover, genre, numberOfPages, publishedDate, authorReal } = req.body;
+    const { token } = req.cookies;
+
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) res.status(401).send('Unauthorized');
+        try {
+            const bookDoc = await Book.create({
+                author: userData.id,
+                title,
+                description,
+                cover,
+                genre,
+                numberOfPages,
+                publishedDate,
+                authorReal,
+            });
+            res.json(bookDoc);
+        } catch (err) {
+            res.status(422).json(err);
+        }
+    })
+});
+
+app.get('/getMyBooks', async (req, res) => {
+    const { token } = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) res.status(401).send('Unauthorized');
+        try {
+            const bookDoc = await Book.find({ author: userData.id });
+            res.json(bookDoc);
+        } catch (err) {
+            res.status(422).json(err);
+        }
+    })
+});
+
+app.listen(3000, () => { 
     console.log('Server is running on port 3000')
 });
 
