@@ -5,14 +5,14 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
-  //const [ready,setReady] = useState(false);
+  const [ready,setReady] = useState(false);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get('/profile');
         setUser(response.data);
-        // setReady(true); // Uncomment this line if you need to set ready state
+        setReady(true); 
       } catch (error) {
         console.error("Error fetching user profile:", error);
       }
@@ -21,10 +21,10 @@ export function UserContextProvider({ children }) {
     if (!user) {
       fetchUserProfile();
     }
-  }, [user]); // Make sure to include user as a dependency if needed
+  }, [user]); 
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, ready }}>
       {children}
     </UserContext.Provider>
   );

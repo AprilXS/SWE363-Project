@@ -165,6 +165,10 @@ app.get('/profile', (req, res) => {
     }
 });
 
+app.post('/logout', (req, res) => {
+    res.clearCookie('token',{ httpOnly: true, secure: true, sameSite: 'None' }).json({ message: 'Logged out' });
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000')
 });

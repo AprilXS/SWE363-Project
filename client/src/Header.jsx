@@ -50,7 +50,7 @@ function Header() {
         </div>{" "}
         {/* end search bar */}
         <Link
-          to="/login"
+          to={user?"/accountPage":"/login"}
           className="flex items-center border border-gray-300 rounded-2xl py-2 px-4 gap-2 overflow-hidden"
         >
           <svg
