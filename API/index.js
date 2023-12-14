@@ -271,6 +271,10 @@ app.post('/updateProgress', async (req, res) => {
     })
 });
 
+app.get('/books', async (req, res) => {
+    res.json(await Book.find({}));
+});
+            
 
 
 
