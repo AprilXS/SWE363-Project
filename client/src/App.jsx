@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import AccountPage from "./pages/AccountPage";
 import BookDetails from "./pages/BookDetails";
 import ProgressDetails from "./pages/ProgressDetails";
+import AddReview from "./pages/AddReview";
 
 import axios from "axios";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/accountPage/:subpage/:action" element={<AccountPage />} />
         <Route path='/bookDetails/:id' element={<BookDetails />} />
         <Route path='/progressDetails/:id' element={<ProgressDetails />} />
+        <Route path='/addReview/:id' element={<AddReview />} />
       </Route>
     </Routes>
     </UserContextProvider>

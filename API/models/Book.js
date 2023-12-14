@@ -12,18 +12,6 @@ const BookSchema = new Schema({
     averageRating: Number,
     rating: Number,
     publishedDate: Date,
-    // reviews: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Review',
-    // }],
-    // comments: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Comment',
-    // }],
-    // users: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User',
-    // }],
 });
 
 const BookModel = mongoose.model('Book', BookSchema);

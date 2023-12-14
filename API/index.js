@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const Book = require('./models/Book');
 const Progress = require('./models/progress');
+const Review = require('./models/Review');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const app = express();
@@ -129,6 +130,8 @@ app.post('/login', async (req, res) => {
                 id: userDoc._id,
                 email: userDoc.email,
                 type: userDoc.type,
+                firstName: userDoc.firstName,
+                lastName: userDoc.lastName,
             },
             jwtSecret,
             { expiresIn: '1d' }
@@ -267,7 +270,7 @@ app.post('/updateProgress', async (req, res) => {
             res.json(progressDoc);
         } catch (err) {
             res.status(422).json(err);
-        }
+        } 
     })
 });
 
@@ -275,6 +278,32 @@ app.get('/books', async (req, res) => {
     res.json(await Book.find({}));
 });
             
+app.post('/addReview', async (req, res) => {
+    const { id, review, rating } = req.body;
+    const { token } = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) res.status(401).send('Unauthorized');
+        const name = userData.firstName + ' ' + userData.lastName;
+        console.log(userData);
+        try {
+            const reviewDoc = await Review.create({
+                book: id,
+                user: name,
+                review: review,
+                date: new Date(),
+                rating: rating,
+            });
+            res.json(reviewDoc);
+        } catch (err) {
+            res.status(422).json(err);
+        }
+    })
+});
+
+app.get('/reviews/:id', async (req, res) => {
+    const { id } = req.params;
+    res.json(await Review.find({ book: id }));
+});
 
 
 
