@@ -29,7 +29,7 @@ function MyProgress() {
       <h2 className="text-3xl font-semibold mb-6">Your Progresses</h2>
       <div className="pt-20 grid grid-cols-1 sm:grid-cols-2 gap-8">
         {progresses.map((progress) => (
-          <Link to={`/accountPage/MyProgress/${progress.bookId}`}>
+          <Link to={`/progressDetails/${progress._id}`}>
             <div className="flex items-center gap-8 border border-gray-400 rounded-lg">
               <div className="mr-4">
                 <img
@@ -52,7 +52,7 @@ function MyProgress() {
                 </div>
                 <div className="mb-4">
                   <span className="font-semibold text-xl">
-                    Finished Reading: {progress.finishedReading ? "Yes" : "No"}
+                    Finished Reading: {progress.finished ? "Yes" : "No"}
                   </span>
                 </div>
               </div>

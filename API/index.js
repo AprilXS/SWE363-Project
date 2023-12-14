@@ -249,6 +249,30 @@ app.get('/myProgress', async (req, res) => {
     })
 });
 
+app.get('/progressDetails/:id', async (req, res) => {
+    const { id } = req.params;
+    res.json(await Progress.findById(id));
+});
+
+app.post('/updateProgress', async (req, res) => {
+    const { id, newCurrentPage, currentPage } = req.body;
+    const { token } = req.cookies;
+    console.log(newCurrentPage == currentPage);
+    console.log(currentPage);
+    const finished = (newCurrentPage == currentPage) ? true : false;
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) res.status(401).send('Unauthorized');
+        try {
+            const progressDoc = await Progress.updateOne({ _id: id }, { currentPage: newCurrentPage, finished: finished });
+            res.json(progressDoc);
+        } catch (err) {
+            res.status(422).json(err);
+        }
+    })
+});
+
+
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000')
