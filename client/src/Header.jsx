@@ -25,12 +25,8 @@ function Header() {
           <span className="font-bold text-xl">Book Reader</span>
         </Link>{" "}
         {/* end logo */}
-        <div className="flex border border-gray-300 rounded-2xl py-2 px-4 gap-2 shadow-md shadow-gray-300 items-center">
-          <div>Anywhere</div>
-          <div className="border border-l border-gray-300 h-10"></div>
-          <div>Any week</div>
-          <div className="border border-l border-gray-300 h-10"></div>
-          <div>Add guests</div>
+        <div className="flex border border-gray-300 rounded-2xl py-2 px-4 gap-2 shadow-md shadow-gray-300 items-center w-80">
+          
           <button className="bg-primary text-white p-2 rounded-full p-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"

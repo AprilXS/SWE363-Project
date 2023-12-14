@@ -31,7 +31,7 @@ function MyBooks() {
     ) {
       alert("Please fill all the fields");
       return;
-    }
+    } 
     e.preventDefault();
     axios
       .post("/addBook", {
