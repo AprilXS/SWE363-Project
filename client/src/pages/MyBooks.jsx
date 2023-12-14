@@ -180,12 +180,13 @@ function MyBooks() {
               className="flex items-center p-6 rounded-lg border border-gray-400 gap-4 bg-bgSecondary"
             >
               <div className="mb-4">
-                <img
-                  src={book.cover}
-                  alt={`${book.title} Cover`}
-                  className="w-48 h-48 object-cover rounded-md"
-                />
-              </div>
+  <img
+    src={book.cover}
+    alt={`${book.title} Cover`}
+    className="w-48 h-48 object-cover rounded-md"
+  />
+</div>
+
               <div>
                 <div className="flex gap-2">
                   <div className="mb-4 border-b border-gray-500 bg-bgSecondary  px-3">

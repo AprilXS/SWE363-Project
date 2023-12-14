@@ -54,13 +54,13 @@ function BookDetails() {
   }
 
   return (
-    <div className="mt-8  px-40">
+    <div className="mt-8  px-40 mt-20">
       <div className="flex items-center gap-8 border border-gray-400 rounded-lg">
         <div className="mr-4">
           <img
             src={book.cover}
             alt={`${book.title} Cover`}
-            className="w-full h-128 object-cover rounded-md"
+            className="w-full h-64 object-cover rounded-md"
           />
           {user !== null && (
           <Link to={`/accountPage/MyProgress/${book._id}`}>

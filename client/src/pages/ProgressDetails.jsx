@@ -56,7 +56,7 @@ function ProgressDetails() {
           <img
             src={progress.cover}
             alt={`${progress.title} Cover`}
-            className="w-full h-128 object-cover rounded-md"
+            className="w-full h-64 object-cover rounded-md"
           />
         </div>
         <div>
