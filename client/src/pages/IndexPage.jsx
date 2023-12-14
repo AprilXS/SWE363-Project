@@ -19,8 +19,8 @@ function IndexPage() {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold mb-6">Community Books</h2>
-      <div className="pt-20 grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <h2 className="pt-10 text-3xl font-semibold mb-6">Community Books</h2>
+      <div className="pt-10 grid grid-cols-1 sm:grid-cols-2 gap-8">
         {books.map((book) => {
           return (
             <Link
