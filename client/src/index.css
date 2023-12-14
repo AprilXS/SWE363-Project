@@ -10,3 +10,7 @@ button.primary {
   @apply w-full border my-2 py-2 px-3 rounded-2xl bg-primary text-white;
   
 }
+
+body {
+  @apply bg-bgSecondary;
+}

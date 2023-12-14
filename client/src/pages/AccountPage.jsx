@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import MyBooks from "./MyBooks";
+import MyProgress from "./MyProgress";
 
 function AccountPage() {
   const { user, setUser, ready } = useContext(UserContext);
@@ -79,6 +80,7 @@ function AccountPage() {
         </div>
       )}
       {subpage === "MyBooks" && <MyBooks />}
+      {subpage === "MyProgress" && <MyProgress />}
     </div>
   );
 } // end IndexPage

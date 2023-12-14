@@ -7,7 +7,6 @@ import axios from "axios";
 import { useState } from "react";
 
 function MyBooks() {
-  const { user } = useContext(UserContext);
   const { action } = useParams();
   const [redirect, setRedirect] = useState(false);
   const [books, setBooks] = useState([]);
@@ -60,9 +59,9 @@ function MyBooks() {
 
   useEffect(() => {
     axios.get("/getMyBooks").then((res) => {
-      console.log(res.data);
       setBooks(res.data);
     });
+    
   }, []);
 
   return (
@@ -99,7 +98,7 @@ function MyBooks() {
             onChange={(e) => {
               setAuthorReal(e.target.value);
             }}
-            placeholder="Enter the Real author of the book"
+            placeholder="Enter the Real author of the book, or your name if you are the author"
             className="w-full p-2 border border-gray-300 mb-4"
           />
 
@@ -176,8 +175,9 @@ function MyBooks() {
         {books.map((book) => {
           return (
             <Link
+              to={`/bookDetails/${book._id}`}
               key={book._id}
-              className="flex items-center p-6 rounded-lg border border-gray-300 gap-4"
+              className="flex items-center p-6 rounded-lg border border-gray-400 gap-4 bg-bgSecondary"
             >
               <div className="mb-4">
                 <img
@@ -188,15 +188,15 @@ function MyBooks() {
               </div>
               <div>
                 <div className="flex gap-2">
-                  <div className="mb-4 border-b bg-gray-200 rounded-lg px-3">
+                  <div className="mb-4 border-b border-gray-500 bg-bgSecondary  px-3">
                     <strong className="text-lg">Title:</strong> {book.title}
                   </div>
-                  <div className="mb-4 border-b bg-gray-200 rounded-lg px-3">
+                  <div className="mb-4 border-b border-gray-500 bg-bgSecondary  px-3">
                     <strong className="text-lg">Author:</strong>{" "}
                     {book.authorReal}
                   </div>
                 </div>
-                <div className="border-b bg-gray-200 rounded-lg px-3">
+                <div className="mb-4 border-b border-gray-500 bg-bgSecondary  px-3">
                   <strong className="text-lg ">Description:</strong>{" "}
                   {book.description}
                 </div>
@@ -211,21 +211,3 @@ function MyBooks() {
 } // end IndexPage
 
 export default MyBooks;
-
-{
-  /* <div className="flex flex-col items-center p-6 rounded-lg mt-12">
-        <h2 className="text-2xl font-semibold mb-4">Your Books</h2>
-        <div className="mb-2 border-b-4">
-          <strong>Name:</strong> {user.firstName} {user.lastName}
-        </div>
-      </div> */
-}
-
-//   <div className="inline-flex">
-//     <Link
-//       to={"/accountPage/MyBooks/AddBook"}
-//       className="border my-2 py-2 px-12 rounded-2xl bg-primary text-white"
-//     >
-//       <div className="text-lg">Add Book</div>
-//     </Link>
-//   </div>

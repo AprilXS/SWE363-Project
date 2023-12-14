@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const Book = require('./models/Book');
+const Progress = require('./models/progress');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const app = express();
@@ -12,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    credentials: true,
+    credentials: true, 
     origin: 'http://localhost:5173',
 }));
 const jwtSecret = 'lkajshfdkajhfd;kafd;alskd';
@@ -207,7 +208,49 @@ app.get('/getMyBooks', async (req, res) => {
     })
 });
 
-app.listen(3000, () => { 
+app.get('/bookDetails/:id', async (req, res) => {
+    const { id } = req.params;
+    res.json(await Book.findById(id));
+});
+
+app.post('/startReading', async (req, res) => {
+    const { bookId, cover, title, numberOfPages } = req.body;
+    const { token } = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) res.status(401).send('Unauthorized');
+        try {
+            const progressDoc = await Progress.create({
+                book: bookId,
+                user: userData.id,
+                currentPage: 0,
+                finished: false,
+                date: new Date(),
+                cover: cover,
+                title: title,
+                numberOfPages: numberOfPages,
+            });
+            res.json(progressDoc);
+        } catch (err) {
+            res.status(422).json(err);
+        }
+    })
+});
+
+app.get('/myProgress', async (req, res) => {
+    const { token } = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) res.status(401).send('Unauthorized');
+        try {
+            const progressDoc = await Progress.find({ user: userData.id });
+            res.json(progressDoc);
+        } catch (err) {
+            res.status(422).json(err);
+        }
+    })
+});
+
+
+app.listen(3000, () => {
     console.log('Server is running on port 3000')
 });
 

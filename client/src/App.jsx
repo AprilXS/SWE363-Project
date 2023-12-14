@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import Layout from "./Layout";
 import Register from "./pages/Register";
 import AccountPage from "./pages/AccountPage";
+import BookDetails from "./pages/BookDetails";
 
 import axios from "axios";
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/accountPage/:subpage?" element={<AccountPage />} />
         <Route path="/accountPage/:subpage/:action" element={<AccountPage />} />
+        <Route path='/bookDetails/:id' element={<BookDetails />} />
       </Route>
     </Routes>
     </UserContextProvider>
