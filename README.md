@@ -6,6 +6,8 @@ The development took place locally, and we adopted a peer programming approach w
 
 During peer programming, Hamza played different roles—observer, coder, or tester—while other team members worked as coders. After each session, Hamza, acting as the leader, hosted the code to validate requirements and perform acceptance testing. Following this validation, only Hamza committed and pushed the code to the repository. This streamlined approach ensured a controlled and cohesive codebase, with Hamza as the gatekeeper for each validated contribution. This method not only fostered collaboration but also provided a structured way to integrate code and manage the repository.
 
+The database mongoDB connictoin was remove to make the repository public
+
 how to run the project:
 1. clone the project
 2. run `npm install` in the client directory
