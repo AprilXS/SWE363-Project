@@ -1,5 +1,11 @@
 # SWE363-Project
 
+Note:
+
+The development took place locally, and we adopted a peer programming approach with Hamza, a leader who has experience in web development, guiding the process. Given that some team members were new to the course content, this collaborative method allowed everyone, regardless of their experience level, to actively participate and receive guidance from Hamza. Hamza, as the leader, considered various aspects such as introducing new learning stacks, managing the learning curve, and navigating unfamiliar areas of knowledge.
+
+During peer programming, Hamza played different roles—observer, coder, or tester—while other team members worked as coders. After each session, Hamza, acting as the leader, hosted the code to validate requirements and perform acceptance testing. Following this validation, only Hamza committed and pushed the code to the repository. This streamlined approach ensured a controlled and cohesive codebase, with Hamza as the gatekeeper for each validated contribution. This method not only fostered collaboration but also provided a structured way to integrate code and manage the repository.
+
 how to run the project:
 1. clone the project
 2. run `npm install` in the client directory
